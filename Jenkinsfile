@@ -1,7 +1,7 @@
 pipeline {
     agent any
        environment {
-        BASTION_HOST = '3.110.225.14'
+        BASTION_HOST = '35.154.105.233'
         WEB_SERVER_HOST = '10.0.12.66'
     }
     triggers {
