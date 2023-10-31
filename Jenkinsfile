@@ -1,8 +1,8 @@
 pipeline {
     agent any
        environment {
-        BASTION_HOST = '35.154.105.233'
-        WEB_SERVER_HOST = '10.0.12.66'
+        BASTION_HOST = '13.127.63.248'
+        WEB_SERVER_HOST = '10.0.131.118'
     }
     triggers {
         pollSCM('* * * * *') // Poll SCM every minute
@@ -46,7 +46,7 @@ pipeline {
                             // SSH to Web server from Bastion host
                             def sshCommand = """
                                 ssh -A -o StrictHostKeyChecking=no -i ${BASTION_PEM_FILE_PATH}  ec2-user@${BASTION_HOST} \\
-                                ssh -o StrictHostKeyChecking=no -i /home/ec2-user/Aquila_MERN-key.pem -tt  ubuntu@${WEB_SERVER_HOST} \\ <<EOF
+                                ssh -o StrictHostKeyChecking=no -i /home/ec2-user/Aquila_MERN-key.pem -tt  ec2-user@${WEB_SERVER_HOST} \\ <<EOF
                                 docker ps -aq | xargs -r docker rm -f
                                 docker run -d --name aquali -p 3010:3010 venkat14489/aquilacms_mern:latest
                                 exit
